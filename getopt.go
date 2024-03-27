@@ -373,15 +373,8 @@ func (f *FlagSet) PrintDefaults() {
 			s += " " + name
 		}
 
-		// Boolean flags of one ASCII letter are so common we
-		// treat them specially, putting their usage on the same line.
-		if len(s) <= 4 { // space, space, '-', 'x'.
-			s += "\t"
-		} else {
-			// Four spaces before the tab triggers good alignment
-			// for both 4- and 8-space tab stops.
-			s += "\n    \t"
-		}
+		s += "\t"
+
 		s += usage
 		if !isZeroValue(fg, fg.DefValue) {
 			if strings.HasSuffix(reflect.TypeOf(fg.Value).String(), "stringValue") {
