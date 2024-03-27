@@ -373,9 +373,9 @@ func (f *FlagSet) PrintDefaults() {
 			s += " " + name
 		}
 
-		s += "\t"
-
+		s += "    \t"
 		s += usage
+
 		if !isZeroValue(fg, fg.DefValue) {
 			if strings.HasSuffix(reflect.TypeOf(fg.Value).String(), "stringValue") {
 				// put quotes on the value
