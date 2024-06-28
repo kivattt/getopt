@@ -377,11 +377,14 @@ func (f *FlagSet) PrintDefaults() {
 		s += usage
 
 		if !isZeroValue(fg, fg.DefValue) {
+			if fg.Usage != "" {
+				fmt.Print(" ")
+			}
 			if strings.HasSuffix(reflect.TypeOf(fg.Value).String(), "stringValue") {
 				// put quotes on the value
-				s += fmt.Sprintf(" (default %q)", fg.DefValue)
+				s += fmt.Sprintf("(default %q)", fg.DefValue)
 			} else {
-				s += fmt.Sprintf(" (default %v)", fg.DefValue)
+				s += fmt.Sprintf("(default %v)", fg.DefValue)
 			}
 		}
 		fmt.Fprint(f.out(), s, "\n")
