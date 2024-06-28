@@ -377,6 +377,8 @@ func (f *FlagSet) PrintDefaults() {
 		s += usage
 
 		if !isZeroValue(fg, fg.DefValue) {
+			fmt.Fprintln(os.Stderr, "usage: " + usage)
+			fmt.Fprintln(os.Stderr, "fg.Usage: " + fg.Usage)
 			if usage != "" {
 				fmt.Print(" ")
 			}
