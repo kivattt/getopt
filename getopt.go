@@ -377,7 +377,7 @@ func (f *FlagSet) PrintDefaults() {
 		s += usage
 
 		if !isZeroValue(fg, fg.DefValue) {
-			if fg.Usage != "" {
+			if usage != "" {
 				fmt.Print(" ")
 			}
 			if strings.HasSuffix(reflect.TypeOf(fg.Value).String(), "stringValue") {
