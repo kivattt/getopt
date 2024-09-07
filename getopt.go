@@ -394,7 +394,7 @@ func (f *FlagSet) PrintDefaults() {
 			nameLength++
 		}
 
-		s += strings.Repeat(" ", longestLongFlagNameLength - len(long) - nameLength)
+		s += strings.Repeat(" ", max(0, longestLongFlagNameLength - len(long) - nameLength))
 		s += "  " + usage
 
 		if !isZeroValue(fg, fg.DefValue) {
