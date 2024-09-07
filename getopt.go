@@ -350,6 +350,23 @@ func PrintDefaults() {
 // about short/long alias pairs and prints the correct syntax for
 // long flags.
 func (f *FlagSet) PrintDefaults() {
+	longestLongFlagNameLength := 0
+	f.FlagSet.VisitAll(func(fg *flag.Flag) {
+		name := fg.Name
+		other := f.unalias[name]
+
+		long := ""
+		if utf8.RuneCountInString(name) > 1 {
+			long = name
+		} else {
+			long = other
+		}
+
+		if len(long) > longestLongFlagNameLength {
+			longestLongFlagNameLength = len(long)
+		}
+	})
+
 	f.FlagSet.VisitAll(func(fg *flag.Flag) {
 		name := fg.Name
 		short, long := "", ""
@@ -373,8 +390,8 @@ func (f *FlagSet) PrintDefaults() {
 			s += " " + name
 		}
 
-		s += "    \t"
-		s += usage
+		s += strings.Repeat(" ", longestLongFlagNameLength - len(long))
+		s += "  " + usage
 
 		if !isZeroValue(fg, fg.DefValue) {
 			if usage != "" {
