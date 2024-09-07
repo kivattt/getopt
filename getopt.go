@@ -366,7 +366,7 @@ func (f *FlagSet) PrintDefaults() {
 				s += ", --" + long
 			}
 		} else {
-			s = fmt.Sprintf("  --%s", long) // Two spaces before -; see next two comments.
+			s = fmt.Sprintf("      --%s", long) // 4 extra spaces for long flags to align with other short aliases
 		}
 		name, usage := flag.UnquoteUsage(fg)
 		if len(name) > 0 {
